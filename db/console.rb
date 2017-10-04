@@ -53,5 +53,8 @@ album3.save()
 artist1.name = "Flintstones"
 artist1.update()
 
+album2.delete()
+artist2.delete()
+
 binding.pry
 nil
