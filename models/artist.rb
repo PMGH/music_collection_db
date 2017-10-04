@@ -50,7 +50,7 @@ class Artist
 
   # List all the albums they have by an artist
   def albums()
-    sql = "SELECT * FROM albums WHERE id = $1;"
+    sql = "SELECT * FROM albums WHERE artist_id = $1;"
     values = [@id]
     results = SqlRunner.run(sql, "get_albums", values)
     return results.map { |album| Album.new(album) }
