@@ -85,4 +85,15 @@ class Album
     SqlRunner.run(sql, "delete_album", values)
   end
 
+  # Find Artists/Albums by their ID
+  def self.find(id)
+    sql = "SELECT * FROM albums WHERE id = $1;"
+    # values
+    values = [id]
+    # sql runner
+    results = SqlRunner.run(sql, "find_album", values)
+    # return
+    return results.map { |album| Album.new(album) }
+  end
+
 end
