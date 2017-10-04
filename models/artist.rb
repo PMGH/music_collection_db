@@ -3,6 +3,7 @@ require_relative('../db/sql_runner')
 
 class Artist
 
+  # Edit Artists/Albums
   attr_accessor :name
   attr_reader :id
 
@@ -42,18 +43,41 @@ class Artist
 
   # List All Artists/Albums
   def self.all()
+    # sql
     sql = "SELECT * FROM artists;"
+    # values
     values = []
+    # sql runner
     results = SqlRunner.run(sql, "get_artists", values)
+    # return
     return results.map { |artist| Artist.new(artist) }
   end
 
   # List all the albums they have by an artist
   def albums()
+    # sql
     sql = "SELECT * FROM albums WHERE artist_id = $1;"
+    # values
     values = [@id]
+    # sql runner
     results = SqlRunner.run(sql, "get_albums", values)
+    # return
     return results.map { |album| Album.new(album) }
+  end
+
+  # Edit Artists/Albums
+  def update()
+    # sql
+    sql = "UPDATE artists SET (
+    name
+    ) = (
+      $1
+      )
+      WHERE id = $2;"
+    # values
+    values = [@name, @id]
+    # sql runner
+    SqlRunner.run(sql, "update_artist", values)
   end
 
 end
