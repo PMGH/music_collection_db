@@ -53,7 +53,7 @@ class Album
   # Show the artist any album belongs to
   def artist()
     sql = "SELECT * FROM artists WHERE id = $1;"
-    values = [@id]
+    values = [@artist_id]
     results = SqlRunner.run(sql, "get_artist", values)
     return results.map { |artist| Artist.new(artist) }
   end
