@@ -34,6 +34,7 @@ class Album
     @id = results[0]['id'].to_i
   end
 
+  # Delete Artists/Albums
   def self.delete_all()
     # sql
     sql = "DELETE FROM albums;"
@@ -71,7 +72,17 @@ class Album
     # values
     values = [@artist_id, @title, @genre, @id]
     # sql runner
-    SqlRunner.run(sql, "update_artist", values)
+    SqlRunner.run(sql, "update_album", values)
+  end
+
+  # Delete Artists/Albums
+  def delete()
+    # sql
+    sql = "DELETE FROM albums WHERE id = $1;"
+    # values
+    values = [@id]
+    # sql runner
+    SqlRunner.run(sql, "delete_album", values)
   end
 
 end
