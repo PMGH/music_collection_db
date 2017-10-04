@@ -50,5 +50,8 @@ album3 = Album.new(
 )
 album3.save()
 
+artist1.name = "Flintstones"
+artist1.update()
+
 binding.pry
 nil
